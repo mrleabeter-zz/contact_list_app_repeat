@@ -30,7 +30,7 @@ class Application
         puts "#{contact.id}:  #{contact.first_name} #{contact.last_name} (#{contact.email})"
       end
       puts "---"
-      puts "#{ContactDatabase.total_contacts} total contacts"
+      puts "#{Contact.total_contacts} total contacts"
 
     when "show"
       puts "You selected show a contact.\nPlease enter the ID # of the contact you would like to display."
@@ -42,15 +42,21 @@ class Application
         puts "Last Name: #{contact.last_name}"
         puts "Email: #{contact.email}"
       else
-          puts "Not found: I'm sorry, but I don't have a record for contact ID ##{contact_id}"
+          puts "Not found: I'm sorry, but there is no record for contact ID ##{contact_id}"
       end
 
     when "find"
-      puts "You selected find a contact.\nPlease enter a term to search for within the contact list."
-      search_term = STDIN.gets.chomp.downcase
-      puts "Here are the contacts that match your search term."
-      Contact.find(search_term)
-
+      puts "You selected find a contact.\nPlease enter a term to search for within the contact list - remember, this search is case sensitive."
+      search_term = STDIN.gets.chomp
+      contacts = Contact.find(search_term)
+      if contacts != []
+        puts "Here are the contacts that match the search term '#{search_term}':"
+        contacts.each do |contact|
+          puts "#{contact.id}:  #{contact.first_name} #{contact.last_name} (#{contact.email})"
+        end
+      else
+        puts "Not found: I'm sorry, but there are no contacts which contain your search term."
+      end
     else
       puts "I'm sorry, I don't recognize that command."
     end

@@ -17,8 +17,12 @@ class Contact
       Contact.new(contact_array[1], contact_array[2], contact_array[3], contact_array[0])
     end
 
+    def total_contacts
+      ContactDatabase.read_contact_database.length
+    end
+
     def create(first_name, last_name, email)
-      id = ContactDatabase.read_contact_database.length + 1
+      id = total_contacts + 1
       contact_array = [id, first_name, last_name, email]
       ContactDatabase.add_to_database(contact_array)
       array_to_contact(contact_array)
@@ -42,8 +46,16 @@ class Contact
     end
     
     def find(term)
-      # TODO: Will find and return contacts that contain the term in the first name, last name or email
-      # use array.select
+      search_results = []
+      array_of_contacts = ContactDatabase.read_contact_database
+      array_of_contacts.select do |contact|
+        contact.each do |item|
+          if item.include?(term)
+            search_results << array_to_contact(contact)
+          end
+        end
+      end
+      search_results
     end 
     
   end
