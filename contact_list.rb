@@ -26,7 +26,7 @@ class Application
       Contact.create(first_name, last_name, email)
       puts "The contact #{first_name} #{last_name} with email address #{email} has been stored under ID ##{ContactDatabase.total_contacts}"
     when "list"
-      puts "this is the list command"
+      Contact.all
     when "show"
       puts "this is the show command"
     when "find"

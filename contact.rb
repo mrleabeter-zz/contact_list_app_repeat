@@ -25,13 +25,15 @@ class Contact
       ContactDatabase.add_to_database(contact_array)
     end
  
+    def all
+      ContactDatabase.list_all_contacts
+      puts "---"
+      puts "#{ContactDatabase.total_contacts} total contacts"
+    end
+
     def find(term)
       # TODO: Will find and return contacts that contain the term in the first name, last name or email
-    end
- 
-    def all
-      # TODO: Return the list of contacts, as is
-    end
+    end 
     
     def show(id)
       # TODO: Show a contact, based on ID
