@@ -16,7 +16,7 @@ class Application
       puts "show - Show a contact"
       puts "find - Find a contact"
     when "new"
-      puts "You selected to create a new contact."
+      puts "You selected create a new contact."
       puts "Please enter the first name of the contact you would like to create."
       first_name = STDIN.gets.chomp.capitalize
       puts "Please enter the last name of the contact you would like to create."
@@ -26,11 +26,18 @@ class Application
       Contact.create(first_name, last_name, email)
       puts "The contact #{first_name} #{last_name} with email address #{email} has been stored under ID ##{ContactDatabase.total_contacts}"
     when "list"
+      puts "You selected list all contacts.\nHere is a list of all your contacts:"
       Contact.all
     when "show"
-      puts "this is the show command"
+      puts "You selected show a contact.\nPlease enter the ID # of the contact you would like to display."
+      contact_id = STDIN.gets.chomp
+      puts "Here is the contact that matches ID ##{contact_id}:"
+      Contact.show(contact_id)
     when "find"
-      puts "this is the find command"
+      puts "You selected find a contact.\nPlease enter a term to search for within the contact list."
+      search_term = STDIN.gets.chomp.downcase
+      puts "Here are the contacts that match your search term."
+      Contact.find(search_term)
     else
       puts "I'm sorry, I don't recognize that command."
     end

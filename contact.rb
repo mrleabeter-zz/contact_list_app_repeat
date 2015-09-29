@@ -31,13 +31,15 @@ class Contact
       puts "#{ContactDatabase.total_contacts} total contacts"
     end
 
-    def find(term)
-      # TODO: Will find and return contacts that contain the term in the first name, last name or email
-    end 
-    
     def show(id)
       # TODO: Show a contact, based on ID
+      ContactDatabase.contact_by_id(id)
     end
+    
+    def find(term)
+      # TODO: Will find and return contacts that contain the term in the first name, last name or email
+
+    end 
     
   end
  
