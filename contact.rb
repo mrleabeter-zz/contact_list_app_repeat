@@ -3,26 +3,26 @@ class Contact
   attr_accessor :first_name, :last_name, :email
 
   def initialize(first_name, last_name, email)
-    # TODO: assign local variables to instance variables
     @first_name = first_name
     @last_name = last_name
     @email = email
-    @contact_array = []
   end
  
   def to_s
     # TODO: return string representation of Contact
   end
  
+
   ## Class Methods
   class << self
     def create(first_name, last_name, email)
-      # TODO: Will initialize a contact as well as add it to the list of contacts
+      contact_array = []
       id = ContactDatabase.total_contacts
-      @contact_array << id += 1
-      @contact_array << first_name
-      @contact_array << last_name
-      @contact_array << email
+      contact_array << id += 1
+      contact_array << first_name
+      contact_array << last_name
+      contact_array << email
+      ContactDatabase.add_to_database(contact_array)
     end
  
     def find(term)

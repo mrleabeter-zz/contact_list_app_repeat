@@ -16,14 +16,15 @@ class Application
       puts "show - Show a contact"
       puts "find - Find a contact"
     when "new"
+      puts "You selected to create a new contact."
       puts "Please enter the first name of the contact you would like to create."
-      first_name = STDIN.gets.chomp
+      first_name = STDIN.gets.chomp.capitalize
       puts "Please enter the last name of the contact you would like to create."
-      last_name = STDIN.gets.chomp
-      puts "Please enter the email address of the contact you would liek to create."
+      last_name = STDIN.gets.chomp.capitalize
+      puts "Please enter the email address of the contact you would like to create."
       email = STDIN.gets.chomp
-      new_contact = Contact.new(first_name, last_name, email)
-      new_contact.create
+      Contact.create(first_name, last_name, email)
+      puts "The contact #{first_name} #{last_name} with email address #{email} has been stored under ID ##{ContactDatabase.total_contacts}"
     when "list"
       puts "this is the list command"
     when "show"
