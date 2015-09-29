@@ -56,8 +56,8 @@ class Contact
         end
       end
       search_results
-    end 
-    
+    end
+
   end
  
 end

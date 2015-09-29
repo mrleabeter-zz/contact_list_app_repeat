@@ -15,12 +15,22 @@ class Application
 
     when "new"
       puts "You selected create a new contact."
+      puts "Please enter the email address of the contact you would like to create."
+      email = STDIN.gets.chomp
+      email_check = Contact.find(email)
+      if email_check != []
+        puts "A contact with the email address #{email} already exists, and can not be duplicated.\nThe contact information is displayed below:"
+        email_check.each do |contact|
+          puts "#{contact.id}:  #{contact.first_name} #{contact.last_name} (#{contact.email})"
+          exit
+        end
+      end
+        
+
       puts "Please enter the first name of the contact you would like to create."
       first_name = STDIN.gets.chomp.capitalize
       puts "Please enter the last name of the contact you would like to create."
       last_name = STDIN.gets.chomp.capitalize
-      puts "Please enter the email address of the contact you would like to create."
-      email = STDIN.gets.chomp
       contact = Contact.create(first_name, last_name, email)
       puts "The contact #{first_name} #{last_name} with email address #{email} has been stored under ID ##{contact.id}"
 
