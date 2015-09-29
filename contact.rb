@@ -1,44 +1,49 @@
 class Contact
  
-  attr_accessor :first_name, :last_name, :email
+  attr_accessor :first_name, :last_name, :email, :id
 
-  def initialize(first_name, last_name, email)
+  def initialize(first_name, last_name, email, id = nil )
     @first_name = first_name
     @last_name = last_name
     @email = email
-  end
- 
-  def to_s
-    # TODO: return string representation of Contact
+    @id = id
   end
  
 
   ## Class Methods
   class << self
+
+    def array_to_contact(contact_array)
+      Contact.new(contact_array[1], contact_array[2], contact_array[3], contact_array[0])
+    end
+
     def create(first_name, last_name, email)
-      contact_array = []
-      id = ContactDatabase.total_contacts
-      contact_array << id += 1
-      contact_array << first_name
-      contact_array << last_name
-      contact_array << email
+      id = ContactDatabase.read_contact_database.length + 1
+      contact_array = [id, first_name, last_name, email]
       ContactDatabase.add_to_database(contact_array)
+      array_to_contact(contact_array)
     end
  
     def all
-      ContactDatabase.list_all_contacts
-      puts "---"
-      puts "#{ContactDatabase.total_contacts} total contacts"
+      array_of_contacts = ContactDatabase.read_contact_database
+      array_of_contacts.map do |contact|
+        array_to_contact(contact)
+      end
     end
 
     def show(id)
-      # TODO: Show a contact, based on ID
-      ContactDatabase.contact_by_id(id)
+      array_of_contacts = ContactDatabase.read_contact_database
+      array_of_contacts.each do |contact|
+        if contact.include?(id)
+          return array_to_contact(contact)
+        end
+      end
+      nil
     end
     
     def find(term)
       # TODO: Will find and return contacts that contain the term in the first name, last name or email
-
+      # use array.select
     end 
     
   end

@@ -1,9 +1,6 @@
 require_relative 'contact'
 require_relative 'contact_database'
 
-# TODO: Implement command line interaction
-# This should be the only file where you use puts and gets
-
 class Application
 
   def command_list
@@ -15,6 +12,7 @@ class Application
       puts "list - List all contacts"
       puts "show - Show a contact"
       puts "find - Find a contact"
+
     when "new"
       puts "You selected create a new contact."
       puts "Please enter the first name of the contact you would like to create."
@@ -23,21 +21,36 @@ class Application
       last_name = STDIN.gets.chomp.capitalize
       puts "Please enter the email address of the contact you would like to create."
       email = STDIN.gets.chomp
-      Contact.create(first_name, last_name, email)
-      puts "The contact #{first_name} #{last_name} with email address #{email} has been stored under ID ##{ContactDatabase.total_contacts}"
+      contact = Contact.create(first_name, last_name, email)
+      puts "The contact #{first_name} #{last_name} with email address #{email} has been stored under ID ##{contact.id}"
+
     when "list"
       puts "You selected list all contacts.\nHere is a list of all your contacts:"
-      Contact.all
+      Contact.all.each do |contact|
+        puts "#{contact.id}:  #{contact.first_name} #{contact.last_name} (#{contact.email})"
+      end
+      puts "---"
+      puts "#{ContactDatabase.total_contacts} total contacts"
+
     when "show"
       puts "You selected show a contact.\nPlease enter the ID # of the contact you would like to display."
       contact_id = STDIN.gets.chomp
-      puts "Here is the contact that matches ID ##{contact_id}:"
-      Contact.show(contact_id)
+      contact = Contact.show(contact_id)
+      if contact != nil
+        puts "Here is the contact that matches ID ##{contact.id}:"
+        puts "First Name: #{contact.first_name}"
+        puts "Last Name: #{contact.last_name}"
+        puts "Email: #{contact.email}"
+      else
+          puts "Not found: I'm sorry, but I don't have a record for contact ID ##{contact_id}"
+      end
+
     when "find"
       puts "You selected find a contact.\nPlease enter a term to search for within the contact list."
       search_term = STDIN.gets.chomp.downcase
       puts "Here are the contacts that match your search term."
       Contact.find(search_term)
+
     else
       puts "I'm sorry, I don't recognize that command."
     end
