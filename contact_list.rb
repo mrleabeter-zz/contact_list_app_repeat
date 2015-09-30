@@ -30,7 +30,6 @@ class Application
       first_name = STDIN.gets.chomp.capitalize
       puts "Please enter the last name of the contact you would like to create."
       last_name = STDIN.gets.chomp.capitalize
-      # To Do:  Pull phone number hash creation out of 'contact_list.rb' and put into 'contact.rb', then call the method below.
       phone_number_input = ""
       phone_numbers = {}
       while phone_number_input != "done" do

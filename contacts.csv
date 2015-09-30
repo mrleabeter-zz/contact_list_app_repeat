@@ -47,3 +47,14 @@
 47,One,Two,111.test.com,{}
 48,Blah,Blah,blah@blah.com,"{""home""=>""222-222-2222""}"
 49,Fix,Phone,numberhash@email.com,"{:home=>9999999999, :mobile=>2222222222}"
+50,Mister,Boombastic,phonenumber@method.ca,0
+51,Cousin,It,doingitright@test.ca,0
+52,Getting,Tired,ofdoing@this.com,{:done=>0}
+53,Pete,Philly,thisisatest@email.com,{:done=>0}
+54,Nobody,Knows,whatwrong@email.com,0
+55,Ben,Powlesland,benpow@email.com,0
+56,Derek,Driscoll,drock@gmail.com,0
+57,Whatever,Man,whoknows@email.com,{:done=>0}
+58,Cmon,Man,welp@email.com,{:pager=>8887774444}
+59,Final,Try,beforehelp@email.com,"{:primary=>4448993754, :work=>8837774376}"
+60,Ok,Maybe,not@email.com,{}
