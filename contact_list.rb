@@ -30,6 +30,7 @@ class Application
       first_name = STDIN.gets.chomp.capitalize
       puts "Please enter the last name of the contact you would like to create."
       last_name = STDIN.gets.chomp.capitalize
+      # To Do:  Pull phone number hash creation out of 'contact_list.rb' and put into 'contact.rb', then call the method below.
       phone_number_input = ""
       phone_numbers = {}
       while phone_number_input != "done" do
@@ -72,7 +73,7 @@ class Application
       if contacts != []
         puts "Here are the contacts that match the search term '#{search_term}':"
         contacts.each do |contact|
-          puts "#{contact.id}:  #{contact.first_name} #{contact.last_name} (#{contact.email})"
+          puts "#{contact.id}:  #{contact.first_name} #{contact.last_name} (#{contact.email}) #{contact.phone_numbers}"
         end
       else
         puts "Not found: I'm sorry, but there are no contacts which contain your search term."
