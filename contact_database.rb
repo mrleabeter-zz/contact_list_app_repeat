@@ -1,11 +1,12 @@
 ## TODO: Implement CSV reading/writing
 require 'csv'
+require 'pry'
 
 class ContactDatabase
 
   # database create method
   def self.add_to_database(contact_array)
-    CSV.open("contacts.csv", "a") do |csv_line|
+    CSV.open("contacts.csv", "a", force_quotes: false) do |csv_line|
       csv_line << contact_array
     end
   end

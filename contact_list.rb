@@ -1,5 +1,6 @@
 require_relative 'contact'
 require_relative 'contact_database'
+require 'pry'
 
 class Application
 
@@ -25,19 +26,27 @@ class Application
           exit
         end
       end
-        
-
       puts "Please enter the first name of the contact you would like to create."
       first_name = STDIN.gets.chomp.capitalize
       puts "Please enter the last name of the contact you would like to create."
       last_name = STDIN.gets.chomp.capitalize
-      contact = Contact.create(first_name, last_name, email)
-      puts "The contact #{first_name} #{last_name} with email address #{email} has been stored under ID ##{contact.id}"
+      phone_number_input = ""
+      phone_numbers = {}
+      while phone_number_input != "done" do
+        puts "Please enter a label & phone number using the following format: label, XXX XXX XXXX.\nEnter done when you have no more phone numbers to enter."
+        phone_number_input = STDIN.gets.chomp
+        if phone_number_input != "done"
+          label, number = phone_number_input.split(", ")
+          phone_numbers[label] = number
+        end
+      end
+      contact = Contact.create(first_name, last_name, email, phone_numbers)
+      puts "The contact #{first_name} #{last_name} has been stored under ID ##{contact.id}"
 
     when "list"
       puts "You selected list all contacts.\nHere is a list of all your contacts:"
       Contact.all.each do |contact|
-        puts "#{contact.id}:  #{contact.first_name} #{contact.last_name} (#{contact.email})"
+        puts "#{contact.id}:  #{contact.first_name} #{contact.last_name} (#{contact.email}) #{contact.phone_numbers}"
       end
       puts "---"
       puts "#{Contact.total_contacts} total contacts"
@@ -51,6 +60,7 @@ class Application
         puts "First Name: #{contact.first_name}"
         puts "Last Name: #{contact.last_name}"
         puts "Email: #{contact.email}"
+        puts "Phone Numbers: #{contact.phone_numbers}"
       else
           puts "Not found: I'm sorry, but there is no record for contact ID ##{contact_id}"
       end

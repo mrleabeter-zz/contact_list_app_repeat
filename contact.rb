@@ -1,12 +1,15 @@
+require 'pry'
+
 class Contact
  
-  attr_accessor :first_name, :last_name, :email, :id
+  attr_accessor :first_name, :last_name, :email, :id, :phone_numbers
 
-  def initialize(first_name, last_name, email, id = nil )
+  def initialize(first_name, last_name, email, id = nil, phone_numbers = nil)
     @first_name = first_name
     @last_name = last_name
     @email = email
     @id = id
+    @phone_numbers = phone_numbers
   end
  
 
@@ -14,16 +17,16 @@ class Contact
   class << self
 
     def array_to_contact(contact_array)
-      Contact.new(contact_array[1], contact_array[2], contact_array[3], contact_array[0])
+      Contact.new(contact_array[1], contact_array[2], contact_array[3], contact_array[0], contact_array[4])
     end
 
     def total_contacts
       ContactDatabase.read_contact_database.length
     end
 
-    def create(first_name, last_name, email)
+    def create(first_name, last_name, email, phone_numbers)
       id = total_contacts + 1
-      contact_array = [id, first_name, last_name, email]
+      contact_array = [id, first_name, last_name, email, phone_numbers]
       ContactDatabase.add_to_database(contact_array)
       array_to_contact(contact_array)
     end

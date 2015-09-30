@@ -23,3 +23,20 @@
 23,Steve,Jobs,applegod@me.com
 24,Duke,Nukem,dukenukem@classicgames.com
 25,Dan,Bilzerian,thekingofinstagram@sympatico.net
+26,Test,Tesing,tessst@test.ca,"{""mobile""=>""123-456-7898""}"
+27,Tony,Stark,tony@starkindustries.com,"{""home""=>""987-654-3212"", ""mobile""=>""963-852-7414""}"
+28,No,Phone,nophone@offthegrid.ca,"{""done""=>nil}"
+29,Nosplit,Onspace,nospace@test.ca,"{""home""=>"" 777-888-9999"", ""mobile""=>"" 333-666-9999""}"
+30,Testttt,Testlks,supertest.test.ca,"{""home""=>""789-987-9878"", ""mobile""=>""999-888-7777""}"
+31,Another,Test,whatever@email.com,"{""mobile""=>""999-888-7755"", ""home""=>""321-456-7855""}"
+32,Testtt,Testttt,thisisatest@gmail.com,"{""home""=>""999-888-7777"", ""mobile""=>""666-333-2222""}"
+33,Thisis,Atest,testtesttest@gmail.com,"{""home""=>""777-888-9999"", ""mobile""=>""123-444-7855""}"
+34,Bobby,Boucher,testingfordone@email.com,"{""home""=>""789-987-1111"", ""mobile""=>""445-665-6655""}"
+35,Thomas,Tankengine,phonewithoutdashes@email.com,"{""home,111 111 1111""=>0, ""mobile""=>222}"
+36,Final,Test,imgoingcrazy@hotmail.com,"{""home""=>111, ""mobile""=>222}"
+37,Last,Time,gimmeabreak@email.com,"{""home""=>111, ""mobile""=>222}"
+38,Going,Crazy,verylasttime@email.com,"{""home""=>""111-111-1111"", ""mobile""=>""222-222-2222"", ""pager""=>""999-999-9999""}"
+39,First,Last,workforme@email.com,"{""home""=>""123-456-7890""}"
+40,George,Bush,fuckyeah@america.com,"{""home""=>""777-888-9999"", ""mobile""=>""111-222-3333"", ""top-secret""=>""555-555-5555""}"
+41,Test,Without,phonenumber@test.ca,{}
+42,Test,Without,phonenumberagain@gmail.com,{}
