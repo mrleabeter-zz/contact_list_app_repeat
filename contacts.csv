@@ -41,3 +41,9 @@
 41,Test,Without,phonenumber@test.ca,{}
 42,Test,Without,phonenumberagain@gmail.com,{}
 43,Blah,Bliggityblah,thisisthelasttime@email.com,"{""Batphone""=>""827-643-8824""}"
+44,Prince,Aladdin,princeali@sultanstent.com,{}
+45,Pete,Tong,itsallgonewrong@hotmail.com,{}
+46,Top,Secret,randomtest@email.com,{}
+47,One,Two,111.test.com,{}
+48,Blah,Blah,blah@blah.com,"{""home""=>""222-222-2222""}"
+49,Fix,Phone,numberhash@email.com,"{:home=>9999999999, :mobile=>2222222222}"

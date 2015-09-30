@@ -34,11 +34,11 @@ class Application
       phone_number_input = ""
       phone_numbers = {}
       while phone_number_input != "done" do
-        puts "Please enter a label & phone number using the following format: label, XXX XXX XXXX.\nEnter done when you have no more phone numbers to enter."
+        puts "Please enter a label & phone number using the following format: label, XXXXXXXXXX.\nEnter done when you have no more phone numbers to enter."
         phone_number_input = STDIN.gets.chomp
         if phone_number_input != "done"
           label, number = phone_number_input.split(", ")
-          phone_numbers[label] = number
+          phone_numbers[label.to_sym] = number.to_i
         end
       end
       contact = Contact.create(first_name, last_name, email, phone_numbers)
