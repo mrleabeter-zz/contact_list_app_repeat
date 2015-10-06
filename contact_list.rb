@@ -15,7 +15,6 @@ class Application
       puts "find - Find a contact"
 
     when "new"
-      puts "You selected create a new contact."
       puts "Please enter the email address of the contact you would like to create."
       email = STDIN.gets.chomp
       email_check = Contact.find(email)
@@ -52,7 +51,7 @@ class Application
       puts "#{Contact.total_contacts} total contacts"
 
     when "show"
-      puts "You selected show a contact.\nPlease enter the ID # of the contact you would like to display."
+      puts "Please enter the ID # of the contact you would like to display."
       contact_id = STDIN.gets.chomp
       contact = Contact.show(contact_id)
       if contact != nil
@@ -66,7 +65,7 @@ class Application
       end
 
     when "find"
-      puts "You selected find a contact.\nPlease enter a term to search for within the contact list - remember, this search is case sensitive."
+      puts "Please enter a term to search for within the contact list - remember, this search is case sensitive."
       search_term = STDIN.gets.chomp
       contacts = Contact.find(search_term)
       if contacts != []
