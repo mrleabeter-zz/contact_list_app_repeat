@@ -16,6 +16,13 @@ class Contact
   ## Class Methods
   class << self
 
+    def connection
+      PG.connect(
+      host: 'localhost',
+      dbname: 'contact_list'
+    )
+    end
+
     def array_to_contact(contact_array)
       Contact.new(contact_array[1], contact_array[2], contact_array[3], contact_array[0], contact_array[4])
     end
