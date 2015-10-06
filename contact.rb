@@ -16,12 +16,12 @@ class Contact
 
   def save
     if id
-      sql = 'UPDATE contacts SET firstname=$1, lastname=$2, email=$3 WHERE id =$5;'
+      sql = 'UPDATE contacts SET firstname=$1, lastname=$2, email=$3 WHERE id =$4;'
       self.class.connection.exec_params(sql, [self.first_name, self.last_name, self.email, @id])
     else
       sql = 'INSERT INTO contacts (firstname, lastname, email) VALUES ($1, $2, $3) RETURNING id;'
       result = self.class.connection.exec_params(sql, [self.first_name, self.last_name, self.email])
-      id = result[0]["id"].to_i
+      @id = result[0]["id"].to_i
     end
   end
  
@@ -32,42 +32,27 @@ class Contact
     def connection
       PG.connect(
       host: 'localhost',
-      dbname: 'contact_list'
+      dbname: 'contact_list',
+      user: 'christopher',
+      password: 'MyPassw0rd4768p'
     )
     end
 
-    def array_to_contact(contact_array)
-      Contact.new(contact_array[1], contact_array[2], contact_array[3], contact_array[0], contact_array[4])
-    end
-
-    def total_contacts
-      ContactDatabase.read_contact_database.length
-    end
-
-    def create(first_name, last_name, email, phone_numbers)
-      id = total_contacts + 1
-      contact_array = [id, first_name, last_name, email, phone_numbers]
-      ContactDatabase.add_to_database(contact_array)
-      array_to_contact(contact_array)
-    end
- 
     def all
-      array_of_contacts = ContactDatabase.read_contact_database
-      array_of_contacts.map do |contact|
-        array_to_contact(contact)
+      self.connection.exec('SELECT * FROM contacts;') do |results|
+        results.map do |hash|
+          Contact.new(hash)
+        end
       end
     end
 
     def show(id)
-      array_of_contacts = ContactDatabase.read_contact_database
-      array_of_contacts.each do |contact|
-        if contact.include?(id)
-          return array_to_contact(contact)
-        end
+      result = self.connection.exec_params('SELECT * FROM contacts WHERE id=$1;', [id])
+      if result[0]
+        Contact.new(result[0])
       end
-      nil
     end
-    
+
     def find(term)
       search_results = []
       array_of_contacts = ContactDatabase.read_contact_database
