@@ -1,15 +1,28 @@
 require 'pry'
+require 'pg'
 
 class Contact
  
-  attr_accessor :first_name, :last_name, :email, :id, :phone_numbers
+  attr_accessor :first_name, :last_name, :email, :phone_numbers
+  attr_reader :id
 
-  def initialize(first_name, last_name, email, id = nil, phone_numbers = nil)
-    @first_name = first_name
-    @last_name = last_name
-    @email = email
-    @id = id
+  def initialize(hash)
+    @id = hash["id"].to_i if hash["id"]
+    @first_name = hash["firstname"]
+    @last_name = hash["lastname"]
+    @email = hash["email"]
     @phone_numbers = phone_numbers
+  end
+
+  def save
+    if id
+      sql = 'UPDATE contacts SET firstname=$1, lastname=$2, email=$3 WHERE id =$5;'
+      self.class.connection.exec_params(sql, [self.first_name, self.last_name, self.email, @id])
+    else
+      sql = 'INSERT INTO contacts (firstname, lastname, email) VALUES ($1, $2, $3) RETURNING id;'
+      result = self.class.connection.exec_params(sql, [self.first_name, self.last_name, self.email])
+      id = result[0]["id"].to_i
+    end
   end
  
 
