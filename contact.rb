@@ -54,16 +54,12 @@ class Contact
     end
 
     def find(term)
-      search_results = []
-      array_of_contacts = ContactDatabase.read_contact_database
-      array_of_contacts.select do |contact|
-        contact.each do |item|
-          if item.include?(term)
-            search_results << array_to_contact(contact)
-          end
+      term = "%#{term}%"
+      self.connection.exec_params('SELECT * FROM contacts WHERE firstname LIKE $1 OR lastname LIKE $1 OR email LIKE $1;', [term]) do |results|
+        results.map do |hash|
+          Contact.new(hash)
         end
       end
-      search_results
     end
 
   end
