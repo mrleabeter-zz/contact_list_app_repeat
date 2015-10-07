@@ -29,13 +29,15 @@ class Contact
   ## Class Methods
   class << self
 
+    @@db_connection = nil
+
     def connection
-      PG.connect(
-      host: 'localhost',
-      dbname: 'contact_list',
-      user: 'christopher',
-      password: 'MyPassw0rd4768p'
-    )
+      return @@db_connection unless @@db_connection.nil?
+      @@db_connection = PG.connect(
+        host: 'localhost',
+        dbname: 'contact_list',
+        user: 'christopher',
+        password: 'MyPassw0rd4768p')
     end
 
     def all
